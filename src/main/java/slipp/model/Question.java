@@ -17,10 +17,13 @@ import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Question {
 	@Id
 	@GeneratedValue
+	@JsonProperty
 	private Long id;
 	
 	@ManyToOne
@@ -28,17 +31,20 @@ public class Question {
 	private User writer;
 	
 	@Column(length = 100, nullable = false)
+	@JsonProperty
 	private String title;
 
 	@Column(nullable = false)
 	@Lob
+	@JsonProperty
 	private String contents;
 	
+	@JsonProperty
 	private LocalDateTime createDate = LocalDateTime.now();
 	
 	@OneToMany(mappedBy="question")
-	@Where(clause = "deleted = false")
-	@OrderBy("id ASC")
+	@Where(clause = "deleted = false") //where 조건절 추가 조건절
+	@OrderBy("id ASC") //orderby
 	private List<Answer> answers;
 	
 	private boolean deleted;
