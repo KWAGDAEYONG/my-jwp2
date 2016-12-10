@@ -60,7 +60,7 @@ public class Answer {
 		if (!writer.equals(loginUser)) {
 			throw new IllegalStateException("다른 사용자가 작성한 답변을 삭제할 수 없습니다.");
 		}
-		
+		System.out.println("사용자 일치");
 		this.deleted = true;
 	}
 	

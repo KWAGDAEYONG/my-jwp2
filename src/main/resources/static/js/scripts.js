@@ -1,5 +1,5 @@
 $(".answer-write input[type='submit']").click(addAnswer);
-$(".qna-comment-slipp-articles").on("click", "delete-answer-form button[type='submit']" ,delAnswer);
+$(".qna-comment-slipp-articles").on("click", ".delete-answer-form button[type='submit']" ,delAnswer);
 
 
 //$(".link-delete-article").click(delAnswer);
@@ -38,7 +38,7 @@ function delAnswer(e){
 	console.log('click delete button!');
 	e.preventDefault();
 	
-	var url = $(".form-delete-answer").attr("action");
+	var url = $(".delete-answer-form").attr("action");
 	console.log("url"+url);
 	
 	var deleteBtn = $(this);
@@ -52,8 +52,11 @@ function delAnswer(e){
 		},
 		success:function(data){
 			console.log('data', data);
-			
-			deleteBtn.closest(".article").remove();
+			if(data.valid){
+				deleteBtn.closest(".article").remove();
+			}else{
+				alert(data.errorMessage);
+			}
 		}
 	});
 }

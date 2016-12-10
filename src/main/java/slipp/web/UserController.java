@@ -21,6 +21,12 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session){
+		session.removeAttribute("loginUser");
+		return "redirect:/";
+	}
+	
 	@PostMapping("/login")
 	public String login(String userId, String password, HttpSession session) {
 		User dbUser = userRepository.findByUserId(userId);
