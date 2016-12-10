@@ -42,15 +42,19 @@ public class AnswerController {
 
 	@DeleteMapping("/{id}")
 	public Result delete(@PathVariable Long questionId, @PathVariable Long id, HttpSession session) {
-		System.out.println("==============로그인체크==============");
+		
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return Result.fail("로그인 사용자만 가능합니다.");
 		}
-		System.out.println("==============로그인체크==============");
+		System.out.println("==============로그인체크ok==============");
 
 		// 세션 유지중인지 체크
 		User loginUser = HttpSessionUtils.getUserFromSession(session);
+		System.out.println("==============세션체크ok==============");
+
 		Answer answer = answerRepository.findOne(id);
+		System.out.println("==============디비데이터get-ok==============");
+
 		// 자신이 쓴 글인지 체크
 
 		try {

@@ -57,11 +57,14 @@ public class Answer {
 	}
 	
 	public void delete(User loginUser) {
+		System.out.println("========delete함수 시작, 사용자 일치여부 체크=======");
 		if (!writer.equals(loginUser)) {
 			throw new IllegalStateException("다른 사용자가 작성한 답변을 삭제할 수 없습니다.");
 		}
-		System.out.println("사용자 일치");
+		System.out.println("========사용자 일치 확인=========");
 		this.deleted = true;
+		System.out.println("========delete 처리 완료=========");
+		
 	}
 	
 	@Override
